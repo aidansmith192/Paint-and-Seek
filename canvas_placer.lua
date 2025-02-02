@@ -65,25 +65,10 @@ function ray_cast(player, camera_position, mouse_position)
 
 	local raycastResult = workspace:Raycast(rayOrigin, ray_direction.LookVector * 1000, raycastParams)
 
-	if raycastResult then
-		-- Print all properties of the RaycastResult if it exists
-		--print(`Ray intersected with: {raycastResult.Instance:GetFullName()}`)
-		--print(`Intersection position: {raycastResult.Position}`)
-		--print(`Distance between ray origin and result: {raycastResult.Distance}`)
-		--print(`The normal vector of the intersected face: {raycastResult.Normal}`)
-		--print(`Material hit: {raycastResult.Material.Name}\n`)
-
-		--block.CFrame = CFrame.new(target_part.Position, target_part.Position + raycastResult.Normal)
-		--block.CFrame = CFrame.lookAt(mouse_position, mouse_position + raycastResult.Normal)
-
-		--block.Orientation = raycastResult.Normal
-		--block.Rotation = raycastResult.Normal
-		--block.CFrame = block.CFrame.Position * raycastResult.Normal
-
-	else
-		--print("Nothing was hit")
+	if not raycastResult then
 		alertEvent:FireClient(player, "Too far away!")
 	end
+	
 	return raycastResult
 end
 
